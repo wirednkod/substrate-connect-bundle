@@ -1,23 +1,24 @@
 {
-    "name": "polkadot-js-bundle",
-    "version": "7.6.9",
-    "description": "A standalone bundle of the Polkadot{JS} libraries.",
+    "name": "substrate-connect-bundle",
+    "version": "0.0.1",
+    "description": "A standalone bundle of the substrate-cnnect.",
     "scripts": {},
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/shawntabrizi/polkadot-js-bundle.git"
+        "url": "git+https://github.com/wirednkod/substrate-connect-bundle"
     },
     "keywords": [
         "polkadot",
+        "substrate connect",
         "substrate",
         "blockchain"
     ],
-    "author": "Shawn Tabrizi",
+    "author": "Nikos Kontakis",
     "license": "Apache-2.0",
     "bugs": {
-        "url": "https://github.com/shawntabrizi/polkadot-js-bundle/issues"
+        "url": "https://github.com/wirednkod/substrate-connect-bundle/issues"
     },
-    "homepage": "https://github.com/shawntabrizi/polkadot-js-bundle#readme",
+    "homepage": "https://github.com/wirednkod/substrate-connect-bundle#readme",
     "dependencies": {},
     "devDependencies": {}
 }
