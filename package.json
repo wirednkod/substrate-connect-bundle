@@ -1,0 +1,23 @@
+{
+    "name": "polkadot-js-bundle",
+    "version": "7.6.9",
+    "description": "A standalone bundle of the Polkadot{JS} libraries.",
+    "scripts": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/shawntabrizi/polkadot-js-bundle.git"
+    },
+    "keywords": [
+        "polkadot",
+        "substrate",
+        "blockchain"
+    ],
+    "author": "Shawn Tabrizi",
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/shawntabrizi/polkadot-js-bundle/issues"
+    },
+    "homepage": "https://github.com/shawntabrizi/polkadot-js-bundle#readme",
+    "dependencies": {},
+    "devDependencies": {}
+}
