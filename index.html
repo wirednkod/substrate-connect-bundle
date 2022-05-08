@@ -78,7 +78,8 @@
 
 	<script>
     async function testConnect() {
-			const { WsProvider, ApiPromise, ScProvider } = polkadotApi;
+      console.log('ScProvider', ScProvider)
+			const { WsProvider, ApiPromise } = polkadotApi;
 			const wsProvider = new WsProvider('wss://rpc.polkadot.io');
 			const polkadot = await ApiPromise.create({ provider: wsProvider });
 
