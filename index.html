@@ -69,13 +69,16 @@
 		</div>
 	</footer>
 
-	<script src="//unpkg.com/@polkadot/rpc-provider/substrate-connect/index.js"></script>
-	<script src="//unpkg.com/@polkadot/api/bundle-polkadot-api.js"></script>
+  <script> var exports = {}; </script>
+	<script type="module" src="./substrateConnect.js"></script>
+	<script src="https://unpkg.com/@polkadot/util/bundle-polkadot-util.js"></script>
+	<script src="https://unpkg.com/@polkadot/util-crypto/bundle-polkadot-util-crypto.js"></script>
+	<script src="https://unpkg.com/@polkadot/types/bundle-polkadot-types.js"></script>
+	<script src="https://unpkg.com/@polkadot/api/bundle-polkadot-api.js"></script>
 
 	<script>
     async function testConnect() {
-      console.log('ssssssss', ScProvider)
-			const { WsProvider, ApiPromise } = polkadotApi;
+			const { WsProvider, ApiPromise, ScProvider } = polkadotApi;
 			const wsProvider = new WsProvider('wss://rpc.polkadot.io');
 			const polkadot = await ApiPromise.create({ provider: wsProvider });
 
