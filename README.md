@@ -4,10 +4,17 @@ This page just serves to show how you can use Substrate connect as bundle with t
 Use them like so:
 
 ```js
-<script src="https://unpkg.com/@polkadot/rpc-provider/substrate-connect/index.js"></script>
-<script src="https://unpkg.com/@polkadot/api/bundle-polkadot-api.js"></script>
+  <script src="https://unpkg.com/@polkadot/api/bundle-polkadot-api.js"></script>
 ```
 ```js
-console.log('ScProvider', ScProvider)
-const { WsProvider, ApiPromise } = polkadotApi;
+  const { ApiPromise, ScProvider } = polkadotApi;
+  const { WellKnownChain } = ScProvider;
+
+  const provider = new ScProvider(WellKnownChain.polkadot);
+  provider.connect()
+  const polkadotLight = await ApiPromise.create({ provider });
+  ......
+  polkadotLight.derive.chain.subscribeNewHeads((header) => {
+    polkadotLightBlock.innerText = header.number;
+  });
 ```
