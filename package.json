@@ -2,7 +2,6 @@
     "name": "substrate-connect-bundle",
     "version": "0.0.1",
     "description": "A standalone bundle of the substrate-cnnect.",
-    "scripts": {},
     "repository": {
         "type": "git",
         "url": "git+https://github.com/wirednkod/substrate-connect-bundle"
@@ -13,6 +12,9 @@
         "substrate",
         "blockchain"
     ],
+    "scripts": {
+      "deploy": "gh-pages -d public"
+    },
     "author": "Nikos Kontakis",
     "license": "Apache-2.0",
     "bugs": {
@@ -20,5 +22,7 @@
     },
     "homepage": "https://github.com/wirednkod/substrate-connect-bundle#readme",
     "dependencies": {},
-    "devDependencies": {}
+    "devDependencies": {
+        "gh-pages": "^4.0.0"
+    }
 }
