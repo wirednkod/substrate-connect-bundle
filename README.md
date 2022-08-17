@@ -4,8 +4,8 @@ This page just serves to show how you can use Substrate connect as bundle with t
 Use them like so:
 
 ```js
-<script src="//unpkg.com/@polkadot/rpc-provider/substrate-connect/index.js"></script>
-<script src="//unpkg.com/@polkadot/api/bundle-polkadot-api.js"></script>
+<script src="https://unpkg.com/@polkadot/rpc-provider/substrate-connect/index.js"></script>
+<script src="https://unpkg.com/@polkadot/api/bundle-polkadot-api.js"></script>
 ```
 ```js
 console.log('ScProvider', ScProvider)

@@ -56,7 +56,7 @@
 		<p class="lead">This page simply tests that the <code>substrate-connect and polkadot.{js}</code> bundles are working.</p>
 		<p></p><code id="code"></code></p>
 		<p id="version"></p>
-		<p>Polkadot Block: <span id="polkadot-block">Not Connected</span></p>
+		<p>Polkadot Light Client Block: <span id="polkadot-light-block">Light Client Not Connected</span></p>
 	</main>
 
 	<footer class="footer">
@@ -70,23 +70,27 @@
 	</footer>
 
   <script> var exports = {}; </script>
-	<script type="module" src="./substrateConnect.js"></script>
 	<script src="https://unpkg.com/@polkadot/util/bundle-polkadot-util.js"></script>
 	<script src="https://unpkg.com/@polkadot/util-crypto/bundle-polkadot-util-crypto.js"></script>
 	<script src="https://unpkg.com/@polkadot/types/bundle-polkadot-types.js"></script>
-	<script src="https://unpkg.com/@polkadot/api/bundle-polkadot-api.js"></script>
+	<!-- <script  src="https://unpkg.com/@polkadot/api/bundle-polkadot-api.js"></script> -->
+	<script  src="./bundle-polkadot-api.js"></script>
 
 	<script>
     async function testConnect() {
-			const { WsProvider, ApiPromise, ScProvider } = polkadotApi;
-			const wsProvider = new WsProvider('wss://rpc.polkadot.io');
-			const polkadot = await ApiPromise.create({ provider: wsProvider });
+      const { ApiPromise, ScProvider, WellKnownChain } = polkadotApi;      
 
-			document.getElementById("version").innerText = polkadot.libraryInfo;
-			let polkadotBlock = document.getElementById("polkadot-block");
+      console.log('ScProvider.WellKnownChain', ScProvider.WellKnownChain)
 
-			polkadot.derive.chain.subscribeNewHeads((header) => {
-				polkadotBlock.innerText = header.number;
+			const provider = new ScProvider(ScProvider.WellKnownChain.polkadot);
+      provider.connect()
+			const polkadotLight = await ApiPromise.create({ provider });
+
+			document.getElementById("version").innerText = polkadotLight.libraryInfo;
+      let polkadotLightBlock = document.getElementById("polkadot-light-block");
+
+      polkadotLight.derive.chain.subscribeNewHeads((header) => {
+				polkadotLightBlock.innerText = header.number;
 			});
 		}
 
