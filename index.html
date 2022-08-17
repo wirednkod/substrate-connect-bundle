@@ -79,9 +79,10 @@
 
 	<script>
     async function testConnect() {
-      const { ApiPromise, ScProvider, WellKnownChain } = polkadotApi;      
+      const { ApiPromise, ScProvider } = polkadotApi;
+      const { WellKnownChain } = ScProvider;
 
-      const provider = new ScProvider(ScProvider.WellKnownChain.polkadot);
+      const provider = new ScProvider(WellKnownChain.polkadot);
       provider.connect()
 			const polkadotLight = await ApiPromise.create({ provider });
 
