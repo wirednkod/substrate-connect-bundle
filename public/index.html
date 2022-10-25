@@ -21,13 +21,12 @@
 		}
 
 		body {
-			/* Margin bottom by footer height */
-			margin-bottom: 30px;
+      padding-top: 5%;
 		}
 
-		.footer {
+		.header {
 			position: absolute;
-			bottom: 0;
+			top: 0;
 			width: 100%;
 			/* Set the fixed height of the footer here */
 			height: 60px;
@@ -51,6 +50,14 @@
 <body>
 
 	<!-- Begin page content -->
+  <div class="header">
+		<div class="container">
+			<span class="text-center text-muted">Source on <a href="https://github.com/wirednkod/substrate-connect-bundle">GitHub</a> - Using <a
+					href="https://github.com/polkadot-js/api/">Polkadot.js</a> and <a
+					href="https://github.com/paritytech/substrate-connect">Substrate Connect</a>  
+			</span>
+		</div>
+	</div>
 	<main role="main" class="container">
 		<h1 class="mt-5">Test Page for Substrate Connect Bundle</h1>
 		<p class="lead">This page simply tests that the <code>substrate-connect and polkadot.{js}</code> bundles are working.</p>
@@ -58,15 +65,6 @@
 		<p id="version"></p>
 		<p>Polkadot Light Client Block: <span id="polkadot-light-block">Light Client Not Connected</span></p>
 	</main>
-
-	<footer class="footer">
-		<div class="container">
-			<span class="text-center text-muted">Source on <a href="https://github.com/wirednkod/substrate-connect-bundle">GitHub</a> - Using <a
-					href="https://github.com/polkadot-js/api/">Polkadot.js</a> and <a
-					href="https://github.com/paritytech/substrate-connect">Substrate Connect</a>  
-			</span>
-		</div>
-	</footer>
 
   <script> var exports = {}; </script>
 	<script src="https://unpkg.com/@polkadot/util/bundle-polkadot-util.js"></script>
