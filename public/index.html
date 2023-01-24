@@ -44,6 +44,14 @@
 			max-width: 680px;
 			padding: 0 15px;
 		}
+
+    .font20 {
+      font-size: 20px;
+    }
+
+    .font15 {
+      font-size: 15px;
+    }
 	</style>
 </head>
 
@@ -61,9 +69,10 @@
 	<main role="main" class="container">
 		<h1 class="mt-5">Test Page for Substrate Connect Bundle</h1>
 		<p class="lead">This page simply tests that the <code>substrate-connect and polkadot.{js}</code> bundles are working.</p>
-		<p></p><code id="code"></code></p>
-		<p id="version"></p>
-		<p>Polkadot Light Client Block: <span id="polkadot-light-block">Light Client Not Connected</span></p>
+		<di style="font-size:20px">Polkadot API's version:<span id="version"></div>
+		<p style="font-size:20px">Polkadot Light Client Block: <span id="polkadot-light-block" style="font-weight:bold; color:red">Connecting...</span></p>
+		<p style="font-size:15px">Example's Code:</p>
+    <code id="code"></code>
 	</main>
 
   <script> var exports = {}; </script>
@@ -78,13 +87,14 @@
       const { WellKnownChain } = ScProvider;
 
       const provider = new ScProvider(WellKnownChain.polkadot);
-      provider.connect()
+      provider.connect();
 			const polkadotLight = await ApiPromise.create({ provider });
 
 			document.getElementById("version").innerText = polkadotLight.libraryInfo;
       let polkadotLightBlock = document.getElementById("polkadot-light-block");
 
       polkadotLight.derive.chain.subscribeNewHeads((header) => {
+        document.getElementById("polkadot-light-block").style.color = "green";
 				polkadotLightBlock.innerText = header.number;
 			});
 		}
