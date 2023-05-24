@@ -77,9 +77,17 @@
 	<script  src="./bundle-polkadot-api.js"></script>
 
 	<script>
+    var WellKnownChain
+
+    ;(function(WellKnownChain) {
+      WellKnownChain["polkadot"] = "polkadot"
+      WellKnownChain["ksmcc3"] = "ksmcc3"
+      WellKnownChain["rococo_v2_2"] = "rococo_v2_2"
+      WellKnownChain["westend2"] = "westend2"
+    })(WellKnownChain || (WellKnownChain = {}))
+
     async function testConnect() {
       const { ApiPromise, ScProvider } = polkadotApi;
-      const { WellKnownChain } = ScProvider;
 
       const provider = new ScProvider(WellKnownChain.polkadot);
       provider.connect()
