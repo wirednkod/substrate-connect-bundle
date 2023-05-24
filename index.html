@@ -98,20 +98,14 @@
       const provider = new ScProvider(WellKnownChain.polkadot);
       provider.connect();
 			ApiPromise.create({ provider }).then(polkadotLight => {
-        console.log('polkadotLight', polkadotLight)
         document.getElementById("version").innerText = polkadotLight.libraryInfo;
-
-        console.log("polkadotLightBlock", document.getElementById("light"))
-
         polkadotLight.derive.chain.subscribeNewHeads((header) => {
           if (document.getElementById("light")) {
             document.getElementById("light").style.color = "green";
             document.getElementById("light").innerText = header.number;
           }
         });
-      })
-
-			
+      })			
 		}
 
 		testConnect();
