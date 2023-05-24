@@ -44,6 +44,14 @@
 			max-width: 680px;
 			padding: 0 15px;
 		}
+
+    .font20 {
+      font-size: 20px;
+    }
+
+    .font15 {
+      font-size: 15px;
+    }
 	</style>
 </head>
 
@@ -61,32 +69,49 @@
 	<main role="main" class="container">
 		<h1 class="mt-5">Test Page for Substrate Connect Bundle</h1>
 		<p class="lead">This page simply tests that the <code>substrate-connect and polkadot.{js}</code> bundles are working.</p>
-		<p></p><code id="code"></code></p>
-		<p id="version"></p>
-		<p>Polkadot Light Client Block: <span id="polkadot-light-block">Light Client Not Connected</span></p>
+		<div style="font-size:20px">Polkadot API's version:<span id="version"></span></div>
+		<p style="font-size:20px">Polkadot Light Client Block: <span id="light" style="font-weight:bold; color:red">Connecting...</span></p>
+		<p style="font-size:15px">Example's Code:</p>
+    <code id="code"></code>
 	</main>
 
   <script> var exports = {}; </script>
 	<script src="https://unpkg.com/@polkadot/util/bundle-polkadot-util.js"></script>
 	<script src="https://unpkg.com/@polkadot/util-crypto/bundle-polkadot-util-crypto.js"></script>
 	<script src="https://unpkg.com/@polkadot/types/bundle-polkadot-types.js"></script>
-	<script  src="https://unpkg.com/@polkadot/api/bundle-polkadot-api.js"></script>
+	<!-- <script  src="https://unpkg.com/@polkadot/api/bundle-polkadot-api.js"></script> -->
+  <script  src="./bundle-polkadot-api.js"></script>
 
 	<script>
+    var WellKnownChain
+
+    ;(function(WellKnownChain) {
+      WellKnownChain["polkadot"] = "polkadot"
+      WellKnownChain["ksmcc3"] = "ksmcc3"
+      WellKnownChain["rococo_v2_2"] = "rococo_v2_2"
+      WellKnownChain["westend2"] = "westend2"
+    })(WellKnownChain || (WellKnownChain = {}))
+
     async function testConnect() {
       const { ApiPromise, ScProvider } = polkadotApi;
-      const { WellKnownChain } = ScProvider;
 
       const provider = new ScProvider(WellKnownChain.polkadot);
-      provider.connect()
-			const polkadotLight = await ApiPromise.create({ provider });
+      provider.connect();
+			ApiPromise.create({ provider }).then(polkadotLight => {
+        console.log('polkadotLight', polkadotLight)
+        document.getElementById("version").innerText = polkadotLight.libraryInfo;
 
-			document.getElementById("version").innerText = polkadotLight.libraryInfo;
-      let polkadotLightBlock = document.getElementById("polkadot-light-block");
+        console.log("polkadotLightBlock", document.getElementById("light"))
 
-      polkadotLight.derive.chain.subscribeNewHeads((header) => {
-				polkadotLightBlock.innerText = header.number;
-			});
+        polkadotLight.derive.chain.subscribeNewHeads((header) => {
+          if (document.getElementById("light")) {
+            document.getElementById("light").style.color = "green";
+            document.getElementById("light").innerText = header.number;
+          }
+        });
+      })
+
+			
 		}
 
 		testConnect();
