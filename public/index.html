@@ -21,13 +21,12 @@
 		}
 
 		body {
-			/* Margin bottom by footer height */
-			margin-bottom: 30px;
+      padding-top: 5%;
 		}
 
-		.footer {
+		.header {
 			position: absolute;
-			bottom: 0;
+			top: 0;
 			width: 100%;
 			/* Set the fixed height of the footer here */
 			height: 60px;
@@ -45,36 +44,42 @@
 			max-width: 680px;
 			padding: 0 15px;
 		}
+
+    .font20 {
+      font-size: 20px;
+    }
+
+    .font15 {
+      font-size: 15px;
+    }
 	</style>
 </head>
 
 <body>
 
 	<!-- Begin page content -->
-	<main role="main" class="container">
-		<h1 class="mt-5">Test Page for Substrate Connect Bundle</h1>
-		<p class="lead">This page simply tests that the <code>substrate-connect and polkadot.{js}</code> bundles are working.</p>
-		<p></p><code id="code"></code></p>
-		<p id="version"></p>
-		<p>Polkadot Light Client Block: <span id="polkadot-light-block">Light Client Not Connected</span></p>
-	</main>
-
-	<footer class="footer">
+  <div class="header">
 		<div class="container">
 			<span class="text-center text-muted">Source on <a href="https://github.com/wirednkod/substrate-connect-bundle">GitHub</a> - Using <a
 					href="https://github.com/polkadot-js/api/">Polkadot.js</a> and <a
 					href="https://github.com/paritytech/substrate-connect">Substrate Connect</a>  
 			</span>
 		</div>
-	</footer>
+	</div>
+	<main role="main" class="container">
+		<h1 class="mt-5">Test Page for Substrate Connect Bundle</h1>
+		<p class="lead">This page simply tests that the <code>substrate-connect and polkadot.{js}</code> bundles are working.</p>
+		<di style="font-size:20px">Polkadot API's version:<span id="version"></div>
+		<p style="font-size:20px">Polkadot Light Client Block: <span id="polkadot-light-block" style="font-weight:bold; color:red">Connecting...</span></p>
+		<p style="font-size:15px">Example's Code:</p>
+    <code id="code"></code>
+	</main>
 
   <script> var exports = {}; </script>
 	<script src="https://unpkg.com/@polkadot/util/bundle-polkadot-util.js"></script>
 	<script src="https://unpkg.com/@polkadot/util-crypto/bundle-polkadot-util-crypto.js"></script>
 	<script src="https://unpkg.com/@polkadot/types/bundle-polkadot-types.js"></script>
-	<!-- <script  src="https://unpkg.com/@polkadot/api/bundle-polkadot-api.js"></script> -->
-  <!-- THIS IS in purpose included locally for testing purposes -->
-	<script  src="./bundle-polkadot-api.js"></script>
+	<script  src="https://unpkg.com/@polkadot/api/bundle-polkadot-api.js"></script>
 
 	<script>
     var WellKnownChain
@@ -90,13 +95,14 @@
       const { ApiPromise, ScProvider } = polkadotApi;
 
       const provider = new ScProvider(WellKnownChain.polkadot);
-      provider.connect()
+      provider.connect();
 			const polkadotLight = await ApiPromise.create({ provider });
 
 			document.getElementById("version").innerText = polkadotLight.libraryInfo;
       let polkadotLightBlock = document.getElementById("polkadot-light-block");
 
       polkadotLight.derive.chain.subscribeNewHeads((header) => {
+        document.getElementById("polkadot-light-block").style.color = "green";
 				polkadotLightBlock.innerText = header.number;
 			});
 		}
